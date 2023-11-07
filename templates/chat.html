@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TalkWorld</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{% static 'style/chatPage.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'img/TWlogo.ico' %}">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">
+            <img class = "logo" src="{% static 'img/TWlogo.png' %}" alt="TalkWorld">
+        </div>
+        <ul class="menu">
+            <li><a href="#">{{user.username}}</a></li>
+            <li><a href="{% url 'userApp:home' %}">Home</a></li>
+        </ul>
+    </div>
+    <div class = "list_container" id = "divToRemove">
+        <h3 class = "list_he">Added List</h3>
+        {% for userList in addList %}
+            <div class = "list_div">
+                <button class = "list" onclick="location.href='{% url 'userApp:chat' userList.addedUserName %}'">{{userList.addedUserName}}</button>
+            </div>
+        {% endfor %}
+    </div> 
+    <div class = "container">
+        <div class = "clientName_div">
+            <p class = "clientName">{{senderName}}</p>
+        </div>
+        <div class = "innerSection" id = "display">
+
+        </div>
+        <form id="post-form" autocomplete="off">
+            {% csrf_token %}
+            <div class = "text_div">
+                <input class = "text" type="text" placeholder="Type" id="message" name="message">
+            </div>
+            <div class = "submit_div">
+                <input class = "submit" type="submit" id="message"  name="submit">
+            </div>
+        </form>
+    </div>
+    <script>
+        window.addEventListener('load', function() {
+            var screen_width = window.innerWidth; // Get the screen width
+
+            if (screen_width < 1150) { // You can change 600 to your desired threshold
+                var divToRemove = document.getElementById('divToRemove');
+                if (divToRemove) {
+                    divToRemove.parentNode.removeChild(divToRemove); // Remove the div if it exists
+                }
+            }
+        });
+        $(document).ready(function () {
+            setTimeout(function() {
+                scrollToBottom();
+            }, 2000); // Delay of 1 second (1000 milliseconds)
+        });
+        function scrollToBottomWithDelay(delay) {
+            setTimeout(function () {
+                var messageBody = document.querySelector('#display');
+                messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+            }, delay); // Delay specified in milliseconds
+        }
+        $(document).ready(function () {
+            setInterval(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: "/getMES/{{ senderName }}/",
+                    success: function (response) {
+                        console.log(response);
+                        $("#display").empty();
+                        for (var key in response.messages) {
+                            if (response.messages[key].userName === '{{user.username}}'){
+                            var temp = '<div class = "SP"><div class="mesCL_div"><p class="mesCL">' + response.messages[key].userMessage + '</p></div></div><br>';
+                            }
+                            else{
+                                var temp = '<div class = "SP"><div class="mes_div"><p class="mes">'+ response.messages[key].userMessage + '</p></div></div><br>';
+                            }
+                            $("#display").append(temp);
+                        }
+                    },
+                    error: function (response) {
+                        alert('An error occurred');
+                    },
+                });
+            }, 1000);
+        });
+        $(document).on('submit', '#post-form', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'userApp:chat' senderName %}',
+                data: {
+                    message: $('#message').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function(data) {
+                    //alert(data)
+                    scrollToBottomWithDelay(3000);
+                }
+            });
+            document.getElementById('message').value = '';
+        });
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+    </script>
+</body>
+</html>

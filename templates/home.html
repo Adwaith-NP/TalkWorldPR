@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TalkWorld</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'style/homePage.css' %}">
+        <link rel="icon" type="image/x-icon" href="{% static 'img/TWlogo.ico' %}">
+    </head> 
+    <body>
+        <div class="top-bar">
+            <div class="logo">
+                <img class = "logo" src="{% static 'img/TWlogo.png' %}" alt="TalkWorld">
+            </div>
+            <ul class="menu">
+                <li><a href="#">{{user.username}}</a></li>
+                <li><a href="{% url 'userApp:logout' %}">Logout</a></li>
+                <li><a href="{% url 'userApp:Del' %}">SOS</a></li>
+            </ul>
+        </div>
+        <div class = "condainer">
+            <div class = "ali_div">
+            <form method = "post" action="{% url 'userApp:home' %}">
+                {% csrf_token %}
+                <div class = "se_div">
+                    <div class = "type_box_div">
+                        <input class="type_box" type = "text" placeholder = "User ID" name="search">
+                    </div>
+                    <div class = "submit_div">
+                        <button class = "Submit" type = "submit"> Add User </button>
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class = "mes_div">
+                        <p>{{message}}</p>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </form>
+            <div class = "he_div">
+                <h3>Added List</h3>
+            </div>
+                {% for userList in addList %}
+                    <div class = "list_div">
+                        <button class = "list" onclick="location.href='{% url 'userApp:chat' userList.addedUserName %}'">{{userList.addedUserName}}</button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

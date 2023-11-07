@@ -1,0 +1,152 @@
+body{
+    font-family: Arial;
+}
+
+.top-bar{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 20px;
+    margin-bottom: 10px;
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+}
+
+.condainer{
+    width: 500px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 20px;
+    overflow-x:scroll;
+}
+
+
+.type_box{
+    width: 250px;
+    height: 40px;
+    font-family: arial;
+    font-size: 12px;
+    background-color: rgba(159, 139, 139, 0.231);
+    border-style: none;
+    border-radius: 5px;
+}
+
+.type_box_div{
+    width: 250px;
+    height: 40px;
+    margin-left: 25px;
+    display:inline-block;
+}
+
+.Submit{
+    width: 80px;
+    height: 40px;
+    font-size: 12px;
+    color: rgb(88, 76, 76);
+    display: inline-block;
+    border-radius: 5px;
+    border-style: none;
+    background-color: #66ffa5;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.submit_div{
+    display:inline-block;
+}
+
+.se_div{
+    margin-top: 20px;
+}
+
+.mes_div{
+    margin-left: 25px;
+}
+
+.he_div{
+    margin-left: 170px;
+    margin-top: 60px;
+}
+
+.list_div{
+    margin-bottom: 10px;
+    margin-left: 25px;
+    width: 355px;
+    height: 30px;
+}
+
+.list{
+    background-color: #66ffa5;
+    width: 355px;
+    height: 30px;
+    color: black;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+}
+
+.ali_div{
+    margin-left: 30px;
+}
+
+/* For mobile */
+
+@media only screen and (max-width: 499px) {
+    .condainer{
+        width: 300px;
+        height: 400px;
+    }
+    .ali_div{
+        margin-left: 5px;
+    }
+    .type_box{
+        width: 200px;
+    }
+    .type_box_div{
+        margin-left: 0px;
+        width: 200px;
+    }
+    .Submit{
+        width: 70px;
+    }
+    .mes_div{
+        margin-left: 0px;
+    }
+    .he_div{
+        margin-left: 93px;
+    }
+    .list_div{
+        width: 286px;
+        margin-left: 8px;
+    }
+    .list{
+        width: 286px;
+    }
+    .logo{
+        width: 100px;
+        height: 100px;
+    }
+}

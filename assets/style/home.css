@@ -1,0 +1,8 @@
+body{
+    background-color: red;
+}
+
+.top-bar{
+    background-color: aqua;
+    display: flex;
+}
