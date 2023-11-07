@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'TalkWorld.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "talkworld ",
+        'NAME': "talkworld",
         'USER': "root",
         'PASSWORD': "",
         'HOST': "localhost",
