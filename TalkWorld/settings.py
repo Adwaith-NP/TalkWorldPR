@@ -80,11 +80,12 @@ WSGI_APPLICATION = 'TalkWorld.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "TalkWorld",
-        'USER': "postgres",
-        'PASSWORD': "1232",
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "talkworldPR",
+        'USER': "root",
+        'PASSWORD': "",
         'HOST': "localhost",
+        'PORT':'3306',
     }
 }
 
