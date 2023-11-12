@@ -28,6 +28,9 @@ def home(request):
     return render(request,"home.html",{'addList':addList})
 ## Login
 def login(request):
+    if request.user.is_authenticated:
+        home_url = reverse('userApp:home')
+        return redirect(home_url)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
