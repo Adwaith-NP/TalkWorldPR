@@ -31,11 +31,16 @@
                     <p class = "info_account">Don't have an account ?</p>
                 </div>
                 <div class = "Sign_Up_div">
-                    <button class = "Sign_Up_Button" type="reset" onclick="location.href='signup'">
+                    <button class = "Sign_Up_Button" type="reset" id="signupButton">
                         Sign Up
                       </button>
                 </div>
             </form>
         </div>
+        <script>
+            document.getElementById('signupButton').addEventListener('click', function() {
+                window.location.href = 'signup';
+            });
+        </script>
     </body>
 </html>
