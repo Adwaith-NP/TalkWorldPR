@@ -31,16 +31,18 @@
                     <p class = "info_account">Don't have an account ?</p>
                 </div>
                 <div class = "Sign_Up_div">
-                    <button class = "Sign_Up_Button" type="reset" id="signupButton">
+                    <button class = "Sign_Up_Button" type="reset" id="signupButton" onclick="redirectToSignup()">
                         Sign Up
                       </button>
                 </div>
             </form>
         </div>
         <script>
-            document.getElementById('signupButton').addEventListener('click', function() {
-                window.location.href = 'signup';
-            });
+            function redirectToSignup() {
+                var signupUrl = "{% url 'userApp:signup' %}";
+        
+                window.location.href = signupUrl;
+            }
         </script>
     </body>
 </html>
