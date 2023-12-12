@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&82(3uqn+tdvj2&v05bxobfvj-%mwac@#ix$20tsmq**1fodfs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['98.70.40.0']
+ALLOWED_HOSTS = []
 
 LOGIN_URL = 'LoginView'
 
@@ -79,13 +79,9 @@ WSGI_APPLICATION = 'TalkWorld.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "talkworldPR",
-        'USER': "root",
-        'PASSWORD': "",
-        'HOST': "localhost",
-        'PORT':'3306',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
